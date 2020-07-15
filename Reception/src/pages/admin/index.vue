@@ -11,30 +11,19 @@
     </p>
 
     <div v-if="visitors">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Visitor Name</th>
-            <th>Host Name</th>
-            <th>Visitor Type</th>
-            <th>Visit Date</th>
-            <th>Contact Number</th>
-            <th>Car Registration</th>
-            <th>Visit End Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(visitor, i) in visitors" :key="i">
-            <td>{{ visitor.visitorName }}</td>
-            <td>{{ visitor.hostName }}</td>
-            <td>{{ visitor.visitorType }}</td>
-            <td>{{ displayDate(visitor.dateTime) }}</td>
-            <td>{{ visitor.contactNumber }}</td>
-            <td>{{ visitor.carRegistration }}</td>
-            <td>{{ displayDate(visitor.endDateTime) }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <b-form-input
+        v-model="filter"
+        placeholder="Type to Search"
+      ></b-form-input>
+
+      <b-table hover :fields="fields" :items="visitors" :filter="filter">
+        <template v-slot:cell(dateTime)="data">
+          {{ displayDate(data) }}
+        </template>
+        <template v-slot:cell(endDateTime)="data">
+          {{ displayDate(data) }}
+        </template>
+      </b-table>
     </div>
   </div>
 </template>
@@ -45,6 +34,20 @@ import { requiresRole } from "../../shared"
 import moment from "moment"
 
 export default {
+  layout: "admin",
+  data: () => ({
+    fields: [
+      { key: "hostName", sortable: true },
+      { key: "visitorName", sortable: true },
+      { key: "visitorType", sortable: true },
+      { key: "dateTime", sortable: true },
+      { key: "contactNumber", sortable: true },
+      { key: "carRegistration", sortable: true },
+      { key: "endDateTime", sortable: true }
+    ],
+    filter: null
+  }),
+
   computed: {
     ...mapGetters(["userSession", "visitors"])
   },
@@ -63,8 +66,8 @@ export default {
       await this.getVisitors()
     },
     displayDate: (date) => {
-      if (date) {
-        return moment(date).format("DD MMM YYYY hh:mm:ss")
+      if (date && date.value) {
+        return moment(date.value).format("DD MMM YYYY hh:mm:ss a")
       }
     },
     requiresRole

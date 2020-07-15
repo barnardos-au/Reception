@@ -1,5 +1,5 @@
 /* Options:
-Date: 2020-07-11 08:31:12
+Date: 2020-07-15 08:37:10
 Version: 5.91
 Tip: To override a DTO option, remove "//" prefix before updating
 BaseUrl: https://localhost:44311
@@ -147,9 +147,6 @@ export class EndVisitResponse
 // @DataContract
 export class AuthenticateResponse implements IHasSessionId, IHasBearerToken
 {
-    // @DataMember(Order=11)
-    public responseStatus: ResponseStatus;
-
     // @DataMember(Order=1)
     public userId: string;
 
@@ -179,6 +176,9 @@ export class AuthenticateResponse implements IHasSessionId, IHasBearerToken
 
     // @DataMember(Order=10)
     public permissions: string[];
+
+    // @DataMember(Order=11)
+    public responseStatus: ResponseStatus;
 
     // @DataMember(Order=12)
     public meta: { [index: string]: string; };
@@ -337,6 +337,12 @@ export class CreateVisit implements IReturn<CreateVisitResponse>
     */
     // @ApiMember(DataType="string", Description="Car registration number", Name="CarRegistration")
     public carRegistration: string;
+
+    /**
+    * Reason for visit
+    */
+    // @ApiMember(DataType="string", Description="Reason for visit", IsRequired=true, Name="Purpose")
+    public purpose: string;
 
     public constructor(init?: Partial<CreateVisit>) { (Object as any).assign(this, init); }
     public createResponse() { return new CreateVisitResponse(); }

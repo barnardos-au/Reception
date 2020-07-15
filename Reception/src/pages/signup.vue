@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-4">
+    <div class="col">
       <h3>Register</h3>
 
       <form

@@ -1,68 +1,73 @@
 <template>
-  <div class="row">
-    <div class="col-4">
-      <h3>Sign In</h3>
+  <div>
+    <div class="row">
+      <div class="col">
+        <h3>Sign In</h3>
 
-      <form
-        ref="form"
-        @submit.prevent="submit"
-        :class="{ error: responseStatus, loading }"
-      >
-        <div class="form-group">
-          <error-summary
-            except="userName,password"
-            :responseStatus="responseStatus"
-          />
-        </div>
-        <div class="form-group">
-          <v-input
-            id="userName"
-            v-model="userName"
-            placeholder="Username"
-            :responseStatus="responseStatus"
-            label="Email"
-            help="Email you signed up with"
-          />
-        </div>
-        <div class="form-group">
-          <v-input
-            type="password"
-            id="password"
-            v-model="password"
-            placeholder="Password"
-            :responseStatus="responseStatus"
-            label="Password"
-            help="6 characters or more"
-          />
-        </div>
-        <div class="form-group">
-          <v-checkbox
-            id="rememberMe"
-            v-model="rememberMe"
-            :responseStatus="responseStatus"
-          >
-            Remember Me
-          </v-checkbox>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-lg btn-primary">Login</button>
-          <link-button href="/signup" lg outline-secondary class="ml-2"
-            >Register</link-button
-          >
-        </div>
-      </form>
+        <form
+          ref="form"
+          @submit.prevent="submit"
+          :class="{ error: responseStatus, loading }"
+        >
+          <div class="form-group">
+            <error-summary
+              except="userName,password"
+              :responseStatus="responseStatus"
+            />
+          </div>
+          <div class="form-group">
+            <v-input
+              id="userName"
+              v-model="userName"
+              placeholder="Username"
+              :responseStatus="responseStatus"
+              label="Email"
+              help="Email you signed up with"
+            />
+          </div>
+          <div class="form-group">
+            <v-input
+              type="password"
+              id="password"
+              v-model="password"
+              placeholder="Password"
+              :responseStatus="responseStatus"
+              label="Password"
+              help="6 characters or more"
+            />
+          </div>
+          <div class="form-group">
+            <v-checkbox
+              id="rememberMe"
+              v-model="rememberMe"
+              :responseStatus="responseStatus"
+            >
+              Remember Me
+            </v-checkbox>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-lg btn-primary">
+              Sign In
+            </button>
+            <link-button href="/signup" lg outline-secondary class="ml-2"
+              >Register</link-button
+            >
+          </div>
+        </form>
+      </div>
     </div>
-
-    <div class="col-5">
-      <div class="row justify-content-end mt-5">
-        <div class="col col-8">
-          <nav-button-group
-            :items="nav.navItemsMap.auth"
-            :attributes="userAttributes"
-            :baseHref="nav.baseUrl"
-            block
-            lg
-          />
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <nav-button-group
+              :items="nav.navItemsMap.auth"
+              :attributes="userAttributes"
+              :baseHref="nav.baseUrl"
+              block
+              lg
+            />
+          </div>
         </div>
       </div>
     </div>

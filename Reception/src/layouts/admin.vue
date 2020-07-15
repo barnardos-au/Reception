@@ -12,7 +12,6 @@
               alt="logo"
               class="img-thumbnail mr-1"
             />
-            <span class="align-middle">Reception</span>
           </div>
         </nuxt-link>
 
@@ -21,11 +20,7 @@
     </nav>
 
     <div id="content" class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-4 col-md-offset-5 align-center">
-          <nuxt />
-        </div>
-      </div>
+      <nuxt />
     </div>
 
     <div id="footer" style="text-align: center;">

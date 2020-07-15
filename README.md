@@ -18,6 +18,8 @@ Admin users can log in and see a record of all visitors
 ## Future development
 
 * Filter visitors on admin page based on date. 
+* Add optional Company for contractors and visitors. Add Centre for employees. Store against user profile
+* Update OAuth secrets and keys
 * Use refresh token
 * Integrate with AD to find employees
 * Add notifications so host is notified that a visitor has arrived 

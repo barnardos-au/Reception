@@ -25,6 +25,9 @@ namespace Reception.ServiceModel
 
         [ApiMember(Name = "CarRegistration", Description = "Car registration number", DataType = "string", IsRequired = false)]
         public string CarRegistration { get; set; }
+
+        [ApiMember(Name = "Purpose", Description = "Reason for visit", DataType = "string", IsRequired = true)]
+        public string Purpose { get; set; }
     }
 
     public enum VisitorType

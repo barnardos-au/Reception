@@ -1,32 +1,27 @@
 <template>
-  <section class="splash">
+  <div>
     <div>
-      <h1 class="title">
-        Visit
-      </h1>
-      <h2 class="subtitle"></h2>
+      <div v-if="userSession">
+        <p class="pt-3">Hi {{ userSession.displayName }}!</p>
+      </div>
 
-      <div class="mt-5">
-        <div v-if="userSession">
-          <p class="pt-3">Hi {{ userSession.displayName }}!</p>
-        </div>
-
-        <div v-if="visit">
-          <div class="form-group pb-5">
-            <div>Check Out Time: {{ displayCurrentDateTime }}</div>
-            <link-button @click="saveVisit" sm primary>End Visit</link-button>
-          </div>
-
-          <link-button @click="$store.dispatch('signout')" sm primary
-            >Sign Out</link-button
+      <div v-if="visit">
+        <div class="form-group">
+          <div>Check Out Time: {{ displayCurrentDateTime }}</div>
+          <button
+            type="submit"
+            @click="saveVisit"
+            class="btn btn-block btn-primary"
           >
-        </div>
-        <div v-else>
-          <p>You have no active visits</p>
+            End Visit
+          </button>
         </div>
       </div>
+      <div v-else>
+        <p>You have no active visits</p>
+      </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -36,7 +31,7 @@ import moment from "moment"
 
 export default {
   data: () => ({
-    visitTime: ""
+    visitTime: moment().toDate()
   }),
 
   computed: {
